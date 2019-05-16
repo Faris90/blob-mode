@@ -211,6 +211,7 @@ GameServer.prototype.start = function () {
     this.wsServer = new WebSocket.Server(wsOptions);
     this.wsServer.on('error', this.onServerSocketError.bind(this));
     this.wsServer.on('connection', this.onClientSocketOpen.bind(this));
+    this.config.serverPort = process.env.PORT || this.config.serverPort ;
     this.httpServer.listen(this.config.serverPort, this.config.serverBind, this.onHttpServerOpen.bind(this));
 
     this.startStatsServer(this.config.serverStatsPort);
